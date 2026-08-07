@@ -1,0 +1,120 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 340px;
+    min-height: 420px;
+    font-family: Arial, Helvetica, sans-serif;
+
+    background: #0f172a;
+    color: white;
+}
+
+.container {
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #22d3ee;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #94a3b8;
+    margin-bottom: 25px;
+    font-size: 14px;
+}
+
+.card {
+    background: #1e293b;
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.card label {
+    display: block;
+    color: #94a3b8;
+    margin-bottom: 10px;
+    font-size: 13px;
+}
+
+#website {
+    word-break: break-word;
+    color: white;
+    font-weight: bold;
+}
+
+button {
+    width: 100%;
+    padding: 14px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #06b6d4;
+    color: white;
+
+    font-size: 15px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #0891b2;
+}
+
+#loading {
+    margin-top: 18px;
+    text-align: center;
+    color: #facc15;
+}
+
+#result {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 12px;
+    background: #1e293b;
+    min-height: 80px;
+}
+
+.hidden {
+    display: none;
+}
+/* ---------- Result Card ---------- */
+
+.result-card {
+    background: #1e293b;
+    border-radius: 12px;
+    padding: 15px;
+    margin-top: 15px;
+}
+
+.result-card h2 {
+    margin-bottom: 12px;
+}
+
+.result-card p {
+    margin-top: 8px;
+}
+
+.result-card .time {
+    color: #94a3b8;
+}
+
+/* ---------- History Cards ---------- */
+
+.history-card {
+    background: #1e293b;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 10px;
+}

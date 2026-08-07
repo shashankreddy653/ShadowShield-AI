@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "ShadowShield AI",
+  "description": "AI-powered phishing detection for websites.",
+  "version": "1.0.0",
+
+  "action": {
+    "default_title": "ShadowShield AI",
+    "default_popup": "popup.html"
+  },
+
+  "background": {
+    "service_worker": "background.js"
+  },
+
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "storage",
+    "scripting"
+  ],
+
+  "host_permissions": [
+    "http://127.0.0.1:8000/*",
+    "<all_urls>"
+  ]
+}

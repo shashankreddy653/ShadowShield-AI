@@ -7,6 +7,7 @@ from leak_detector.rewriter import rewrite_text
 
 from database import (
     get_website_history,
+    save_website_scan,
     save_leak_scan,
     get_leak_history,
 )
@@ -33,7 +34,19 @@ def health():
 
 @router.post("/analyze")
 def analyze_url(request: URLRequest):
-    return analyze(request.url)
+
+    result = analyze(request.url)
+
+    data = result["data"]
+
+    save_website_scan(
+        url=data["url"],
+        score=data["score"],
+        risk=data["risk"],
+        ai_summary=data["ai_explanation"]
+    )
+
+    return result
 
 
 @router.get("/history")

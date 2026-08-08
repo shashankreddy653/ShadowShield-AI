@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>
+        ShadowShield AI
+    </title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+
+            margin: 0;
+
+            min-height: 100vh;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #111827,
+                    #1f2937
+                );
+
+            font-family:
+                Arial,
+                sans-serif;
+
+        }
+
+        .container {
+
+            width: 520px;
+
+            max-width: 90%;
+
+            background: white;
+
+            border-radius: 20px;
+
+            padding: 35px;
+
+            text-align: center;
+
+            box-shadow:
+                0 25px 80px
+                rgba(0,0,0,0.5);
+
+        }
+
+        .logo {
+
+            font-size: 42px;
+
+        }
+
+        h1 {
+
+            margin-bottom: 8px;
+
+            color: #111827;
+
+        }
+
+        #url {
+
+            word-break: break-all;
+
+            background: #f3f4f6;
+
+            padding: 12px;
+
+            border-radius: 8px;
+
+            font-size: 13px;
+
+            margin: 20px 0;
+
+        }
+
+        #status {
+
+            font-size: 22px;
+
+            font-weight: bold;
+
+            margin: 20px 0;
+
+        }
+
+        #score {
+
+            font-size: 18px;
+
+            font-weight: bold;
+
+        }
+
+        #reasons {
+
+            text-align: left;
+
+            background: #f9fafb;
+
+            padding: 15px 30px;
+
+            border-radius: 10px;
+
+            margin-top: 20px;
+
+        }
+
+        button {
+
+            border: none;
+
+            border-radius: 9px;
+
+            padding: 13px 22px;
+
+            margin: 8px;
+
+            font-size: 16px;
+
+            cursor: pointer;
+
+            font-weight: bold;
+
+        }
+
+        #leave {
+
+            background: #dc2626;
+
+            color: white;
+
+        }
+
+        #continue {
+
+            background: #2563eb;
+
+            color: white;
+
+        }
+
+        .hidden {
+
+            display: none;
+
+        }
+
+        .loading {
+
+            font-size: 20px;
+
+            color: #374151;
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <div class="container">
+
+        <div class="logo">
+            🛡️
+        </div>
+
+        <h1>
+            ShadowShield AI
+        </h1>
+
+        <p>
+            Verifying website security...
+        </p>
+
+        <div id="url">
+            Checking...
+        </div>
+
+        <div
+            id="loading"
+            class="loading"
+        >
+            🔍 Analyzing website...
+        </div>
+
+        <div
+            id="result"
+            class="hidden"
+        >
+
+            <div id="status"></div>
+
+            <div id="score"></div>
+
+            <div id="reasons"></div>
+
+            <br>
+
+            <button id="leave">
+                Leave Website
+            </button>
+
+            <button id="continue">
+                Continue
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <script src="warning.js"></script>
+
+</body>
+
+</html>

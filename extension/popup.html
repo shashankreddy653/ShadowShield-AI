@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ShadowShield AI</title>
-
     <link rel="stylesheet" href="popup.css">
 </head>
 
@@ -16,34 +15,54 @@
         <h1>🛡 ShadowShield AI</h1>
 
         <p class="subtitle">
-            AI Powered Phishing Detection
+            AI-Powered Cybersecurity
         </p>
+
+        <!-- Current Website -->
 
         <div class="card">
 
             <label>Current Website</label>
 
             <div id="website">
-                Loading...
+                Detecting...
             </div>
 
         </div>
 
-        <button id="analyzeBtn">
-            Analyze Website
-        </button>
+        <!-- Automatic Analysis -->
 
-        <div id="loading" class="hidden">
-            Analyzing...
+        <div id="loading">
+            🔍 Analyzing website...
         </div>
+
+        <div id="error" class="hidden"></div>
 
         <div id="result"></div>
 
         <hr>
 
+        <!-- Personal Data Protection -->
+
+        <h3>🛡️ Personal Data Protection</h3>
+
+        <p class="description">
+            Protect only the prompt you choose to scan.
+        </p>
+
+        <button id="protectBtn">
+            🔒 Hide Personal Data
+        </button>
+
+        <div id="leakResult"></div>
+
+        <hr>
+
         <h3>Recent Scans</h3>
 
-        <div id="history"></div>
+        <div id="history">
+            Loading history...
+        </div>
 
     </div>
 

@@ -5,6 +5,6 @@ def check(url: str):
     parsed_url = urlparse(url)
 
     if parsed_url.scheme == "https":
-        return 0, "HTTPS Enabled"
+        return 15, "HTTPS Enabled"
 
-    return -30, "HTTPS Not Enabled"
+    return 0, "HTTPS Not Enabled"

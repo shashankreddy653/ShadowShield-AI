@@ -41,12 +41,29 @@ def check(url: str):
 
         age = (now - creation).days
 
-        # Recently registered
-        if age < 180:
-            return -25, f"Recently Registered Domain ({age} days)"
+        # --------------------------------------------------
+        # DOMAIN AGE SCORING
+        # --------------------------------------------------
 
-        # Older domain
-        return 0, f"Domain Age: {age} days"
+        if age < 180:
+
+            return 0, f"Recently Registered Domain ({age} days)"
+
+        elif age < 365:
+
+            return 3, f"Domain Age: {age} days"
+
+        elif age < 1095:  # 1-3 years
+
+            return 5, f"Domain Age: {age} days"
+
+        elif age < 3650:  # 3-10 years
+
+            return 8, f"Domain Age: {age} days"
+
+        else:  # More than 10 years
+
+            return 10, f"Domain Age: {age} days"
 
     except Exception as e:
 

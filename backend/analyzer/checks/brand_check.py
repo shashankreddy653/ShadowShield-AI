@@ -1,5 +1,6 @@
 from urllib.parse import urlparse
 
+
 TRUSTED_BRANDS = [
     "google",
     "paypal",
@@ -31,16 +32,22 @@ def check(url: str):
 
         if brand in hostname:
 
-            # Legitimate domains
+            # Legitimate domain
             if (
                 hostname == f"{brand}.com"
                 or hostname.endswith(f".{brand}.com")
                 or hostname == f"www.{brand}.com"
             ):
-                reasons.append(f"Trusted {brand.title()} Domain")
+                score += 10
+
+                reasons.append(
+                    f"Trusted {brand.title()} Domain"
+                )
 
             else:
-                score -= 30
+                # Brand appears in suspicious domain
+                score += 0
+
                 reasons.append(
                     f"Possible Brand Impersonation ({brand})"
                 )

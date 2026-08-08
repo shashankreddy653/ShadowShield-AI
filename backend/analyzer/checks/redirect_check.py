@@ -20,7 +20,7 @@ def check(url: str):
         elif redirects > 0:
             return -5, f"{redirects} Redirect(s) Found"
 
-        return 0, "No Redirects"
+        return 10, "No Redirects"
 
     except Exception:
-        return -10, "Redirect Check Failed"
+        return 0, "Redirect Check Failed"

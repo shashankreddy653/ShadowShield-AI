@@ -17,6 +17,6 @@ def check(url: str):
 
     for word in KEYWORDS:
         if word in path:
-            return -15, f"Suspicious Keyword Detected ({word})"
+            return 0, f"Suspicious Keyword Detected ({word})"
 
-    return 0, "No Suspicious Keywords"
+    return 5, "No Suspicious Keywords"

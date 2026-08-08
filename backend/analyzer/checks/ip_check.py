@@ -7,7 +7,7 @@ def check(url: str):
 
     try:
         ipaddress.ip_address(hostname)
-        return -20, "IP Address Used Instead of Domain"
+        return 0, "IP Address Used Instead of Domain"
 
     except ValueError:
-        return 0, "Domain Name Used"
+        return 5, "Domain Name Used"

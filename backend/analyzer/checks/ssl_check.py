@@ -16,7 +16,7 @@ def check(url: str):
             with context.wrap_socket(sock, server_hostname=hostname):
                 pass
 
-        return 0, "Valid SSL Certificate"
+        return 15, "Valid SSL Certificate"
 
     except Exception:
-        return -20, "Invalid or Missing SSL Certificate"
+        return 0, "Invalid or Missing SSL Certificate"

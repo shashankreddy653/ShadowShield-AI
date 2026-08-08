@@ -12,10 +12,14 @@ SHORTENERS = {
 }
 
 
+from urllib.parse import urlparse
+
+
 def check(url: str):
+
     hostname = urlparse(url).hostname or ""
 
     if hostname.lower() in SHORTENERS:
-        return -15, "URL Shortener Detected"
+        return 0, "URL Shortener Detected"
 
-    return 0, "No URL Shortener Used"
+    return 5, "No URL Shortener Used"

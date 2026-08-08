@@ -1,5 +1,5 @@
 def check(url: str):
     if "@" in url:
-        return -20, "@ Symbol Found in URL"
+        return 0, "@ Symbol Found in URL"
 
-    return 0, "No @ Symbol Found"
+    return 5, "No @ Symbol Found"

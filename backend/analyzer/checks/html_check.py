@@ -24,6 +24,7 @@ def check(url: str):
 
         # --------------------------------------------------
         # LOGIN FORM DETECTION
+        # +1 if safe
         # --------------------------------------------------
 
         forms = soup.find_all("form")
@@ -31,6 +32,8 @@ def check(url: str):
         if forms:
 
             reasons.append("Login Form Detected")
+
+            same_domain = True
 
             for form in forms:
 
@@ -42,31 +45,48 @@ def check(url: str):
 
                     action_domain = urlparse(action_url).netloc
 
-                    if action_domain != "" and action_domain != current_domain:
+                    if (
+                        action_domain != ""
+                        and action_domain != current_domain
+                    ):
 
-                        score -= 30
+                        same_domain = False
 
                         reasons.append(
                             f"Form Submits to External Domain ({action_domain})"
                         )
 
+            if same_domain:
+                score += 1
+                reasons.append("Forms Submit to Same Domain")
+
         else:
 
+            score += 1
             reasons.append("No Login Form")
 
         # --------------------------------------------------
         # PASSWORD FIELD
+        # +1 if no password field
         # --------------------------------------------------
 
-        passwords = soup.find_all("input", {"type": "password"})
+        passwords = soup.find_all(
+            "input",
+            {"type": "password"}
+        )
 
         if passwords:
+
             reasons.append("Password Field Detected")
+
         else:
+
+            score += 1
             reasons.append("No Password Field")
 
         # --------------------------------------------------
         # HIDDEN IFRAMES
+        # +1 if none detected
         # --------------------------------------------------
 
         hidden = False
@@ -82,18 +102,20 @@ def check(url: str):
             ):
 
                 hidden = True
+                break
 
         if hidden:
 
-            score -= 20
             reasons.append("Hidden iFrame Detected")
 
         else:
 
+            score += 1
             reasons.append("No Hidden iFrame")
 
         # --------------------------------------------------
         # EXTERNAL JAVASCRIPT
+        # +1 if not excessive
         # --------------------------------------------------
 
         external = 0
@@ -112,16 +134,29 @@ def check(url: str):
 
         if external > 15:
 
-            score -= 10
-
-            reasons.append(f"Too Many External Scripts ({external})")
+            reasons.append(
+                f"Too Many External Scripts ({external})"
+            )
 
         else:
 
-            reasons.append(f"External Scripts : {external}")
+            score += 1
+
+            reasons.append(
+                f"External Scripts : {external}"
+            )
+
+        # --------------------------------------------------
+        # FINAL HTML SCORE
+        # Maximum = 5
+        # --------------------------------------------------
+
+        score = min(score, 5)
 
     except Exception:
 
-        return -20, ["Unable to Analyze HTML"]
+        reasons.append("Unable to Analyze HTML")
+
+        return 0, reasons
 
     return score, reasons

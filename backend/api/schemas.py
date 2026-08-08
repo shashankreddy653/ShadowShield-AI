@@ -7,3 +7,8 @@ class AnalyzeResponse(BaseModel):
     score: int
     risk: str
     reasons: list[str]
+from pydantic import BaseModel
+
+
+class LeakRequest(BaseModel):
+    text: str

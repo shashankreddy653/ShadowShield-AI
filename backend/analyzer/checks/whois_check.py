@@ -1,31 +1,55 @@
 import whois
 from urllib.parse import urlparse
-from datetime import datetime
+from datetime import datetime, timezone
 
 
 def check(url: str):
+
     try:
+        # Extract domain
         domain = urlparse(url).hostname
 
         if not domain:
             return 0, "WHOIS Check Skipped"
 
+        # Remove www.
+        domain = domain.lower()
+
+        if domain.startswith("www."):
+            domain = domain[4:]
+
+        # WHOIS lookup
         data = whois.whois(domain)
 
+        # Get creation date
         creation = data.creation_date
 
         if isinstance(creation, list):
-            creation = creation[0]
+            creation = next(
+                (date for date in creation if date),
+                None
+            )
 
         if not creation:
-            return -10, "Domain Age Unknown"
+            return 0, "WHOIS: Creation Date Unavailable"
 
-        age = (datetime.now() - creation).days
+        # Make datetime timezone-safe
+        if creation.tzinfo is not None:
+            now = datetime.now(timezone.utc)
+        else:
+            now = datetime.now()
 
+        age = (now - creation).days
+
+        # Recently registered
         if age < 180:
             return -25, f"Recently Registered Domain ({age} days)"
 
-        return 0, f"Old Domain ({age} days)"
+        # Older domain
+        return 0, f"Domain Age: {age} days"
 
-    except Exception:
-        return -10, "WHOIS Lookup Failed"
+    except Exception as e:
+
+        print(f"WHOIS error for {url}: {e}")
+
+        return 0, "WHOIS Lookup Unavailable"

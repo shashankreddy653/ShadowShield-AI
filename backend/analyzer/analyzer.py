@@ -1,3 +1,4 @@
+from database import save_website_scan
 from ai.gemini import explain
 from analyzer.checks.https_check import check as https_check
 from analyzer.checks.ip_check import check as ip_check
@@ -15,6 +16,7 @@ from analyzer.checks.whois_check import check as whois_check
 from analyzer.checks.ssl_check import check as ssl_check
 from analyzer.checks.redirect_check import check as redirect_check
 from analyzer.checks.html_check import check as html_check
+
 
 from analyzer.risk_engine import calculate
 from analyzer.checks.brand_check import check as brand_check
@@ -69,6 +71,12 @@ def analyze(url: str):
     score=score,
     risk=risk,
     reasons=reasons
+)
+    save_website_scan(
+    url=url,
+    score=score,
+    risk=risk,
+    ai_summary=ai_explanation
 )
 
     return {
